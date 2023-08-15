@@ -24,6 +24,7 @@ pip install -r requirements.txt
 # This method allow you to run the program from cli "anywhere" using environment variable "path"
 git clone https://github.com/CEDT-Chula/nattee_scraper
 cd nattee_scraper
+sudo chmod 755 ./build.sh # Give Execute Permission (for macos and linux only!)
 ./build.sh # for linux/macos and unix like system
 # ./build.bat # for windows (btw this is not tested, this shell scripts was written by ChadGPT using build.sh as reference)
 ```
