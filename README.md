@@ -1,6 +1,6 @@
 # Nattee Scraper
 CEDT Comprog Automated Creation Of Testcase for vscode [CPH Extension](https://github.com/agrawal-d/cph)
-designed for getting CEDT NatteeGrader website testcase by reverse engineering ruby web auth of [Cafe Grader](https://github.com/cafe-grader-team/cafe-grader-web) created by T'Nattee
+designed for getting CEDT [NatteeGrader website](https://2110104.nattee.net/) testcase by reverse engineering ruby web auth of [Cafe Grader](https://github.com/cafe-grader-team/cafe-grader-web) created by T'Nattee
 
 ![showcase](https://github.com/CEDT-Chula/nattee_scraper/blob/master/showcase/showcase.gif?raw=true)
 
