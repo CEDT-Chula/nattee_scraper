@@ -12,8 +12,8 @@ designed for getting CEDT NatteeGrader website testcase by reverse engineering r
 ## Installation Method
 ### Method 1 Python Virtual Environment Installation (Recommended for Windows, as Method 2 is not tested)
 ```bash
-git clone 'this repo'
-cd 'this repo'
+git clone https://github.com/CEDT-Chula/nattee_scraper
+cd nattee_scraper
 python -m venv venv
 # venv\Scripts\activate for windows
 source venv/bin/activate # for linux/macos and unix like system
@@ -22,8 +22,8 @@ pip install -r requirements.txt
 ### Method 2 Self Compiled Binary Installation (Very Recommended for MacOS/Linux)
 ```bash
 # This method allow you to run the program from cli "anywhere" using environment variable "path"
-git clone 'this repo'
-cd 'this repo'
+git clone https://github.com/CEDT-Chula/nattee_scraper
+cd nattee_scraper
 ./build.sh # for linux/macos and unix like system
 # ./build.bat # for windows (btw this is not tested, this shell scripts was written by ChadGPT using build.sh as reference)
 ```
