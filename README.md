@@ -57,3 +57,7 @@ python ntscraper.py ./file.cpp https://2110104.nattee.net/submissions/direct_edi
 # binary installation
 ntscraper ./file.cpp https://2110104.nattee.net/submissions/direct_edit_problem/1307 --uid 66778899 --password 12345678
 ```
+# Contribution Needed
+- Testing And Fix (if it broke) build.bat on windows (please also update the docs na bro)
+- Improvements On Codebase Algorithm & Maybe Some Refractor
+- Add Functionality To Improve Users Experience Such As (Multi Quizs Testcase Generation)
