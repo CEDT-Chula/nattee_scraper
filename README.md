@@ -2,6 +2,8 @@
 CEDT Comprog Automated Creation Of Testcase for vscode [CPH Extension](https://github.com/agrawal-d/cph)
 designed for getting CEDT NatteeGrader website testcase by reverse engineering ruby web auth of [Cafe Grader](https://github.com/cafe-grader-team/cafe-grader-web) created by T'Nattee
 
+![showcase](https://github.com/CEDT-Chula/nattee_scraper/blob/master/showcase/showcase.gif?raw=true)
+
 ## Prerequisite
 - Python 3.8 or higher
 - vscode (who tf didn't have it?) or VsCodium (if you don't like microsoft)
