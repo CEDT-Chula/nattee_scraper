@@ -28,11 +28,12 @@ class NateeScraper():
             raise ValueError("Wrong password")
         print("Login success...")
 
-    def __get_testcases_link(self, quiz_link: str) -> str:
-        return quiz_link.replace("/submissions/direct_edit_problem/", "/testcases/show_problem/")
+    def __get_testcases_link(self, quiz_testcase_link: str) -> str:
+        return quiz_testcase_link.replace("/submissions/direct_edit_problem/", "/testcases/show_problem/")
 
-    def __get_testcases(self, quiz_link:str):
-        test_case_link = self.__get_testcases_link(quiz_link)
+    def __get_testcases(self, quiz_testcase_link:str):
+
+        test_case_link = self.__get_testcases_link(quiz_testcase_link) if self.link_type == "quiz" else quiz_testcase_link
         response = self.session.get(test_case_link)
         soup = BeautifulSoup(response.text, 'html.parser')
         testcases = soup.find_all('textarea')
@@ -47,7 +48,9 @@ class NateeScraper():
         cases = list(zip(inputs, outputs))
         return cases
 
-    def create_testcase(self, cpp_path: str, quiz_link: str):
+    def create_testcase(self, cpp_path: str, quiz_testcase_link: str):
+        self.link_type = self.path_validator(cpp_path, quiz_testcase_link)
+        print("Creating test case...")
         def single_test_case(id:int, input: str, output: str):
             return {
                 'id': id,
@@ -55,7 +58,7 @@ class NateeScraper():
                 'output': output
             }
 
-        cases = self.__get_testcases(quiz_link)
+        cases = self.__get_testcases(quiz_testcase_link)
         fname = os.path.basename(cpp_path)
         root_dir = os.path.dirname(cpp_path)
         cph_folder_path = os.path.join(root_dir, '.cph')
@@ -75,22 +78,27 @@ class NateeScraper():
         print(f"Containing {len(test_cases)} testcases")
         return None
 
-    def path_validator(self, cpp_path: str, quiz_link: str):
+    def path_validator(self, cpp_path: str, quiz_testcase_link: str) -> str:
+        print("Validating path...")
         if not cpp_path.endswith('.cpp') and os.path.isfile(cpp_path):
             raise ValueError("Please provide AN 'ACTUAL' .cpp file")
         
         # Ex. https://2110104.nattee.net//submissions/direct_edit_problem/[number]
-        # check if quiz_link is valid via regex
-        if not re.match(f'{self.root_url}submissions/direct_edit_problem/\d+', quiz_link):
-            raise ValueError("Please provide a valid quiz link")
-        return None
+        # Ex.2 https://2110104.nattee.net/testcases/show_problem/1324
+        # check if quiz or testcase link valid via regex
+        if re.match(f'{self.root_url}submissions/direct_edit_problem/\d+', quiz_testcase_link):
+            return "quiz"
+        elif re.match(f'{self.root_url}testcases/show_problem/\d+', quiz_testcase_link):
+            return "testcase"
+        else:
+            raise ValueError("Please provide a valid quiz/testcase link")
 
 folder_cache = f'{tempfile.gettempdir()}/.natee_scraper/'
 usr_cache = f'{folder_cache}/usrcache.cedt'
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Natee Scraper')
     parser.add_argument('cpp_path', type=str, help='Your cpp file path')
-    parser.add_argument('quiz_link', type=str, help='Your quiz link')
+    parser.add_argument('quiz_testcase_link', type=str, help='Your quiz/testcase link')
     parser.add_argument('--uid', type=str, help='Your NatteeGrader username', default=None, required=False)
     parser.add_argument('--password', type=str, help='Your NatteeGrader password', default=None, required=False)
     args = parser.parse_args()
@@ -113,7 +121,4 @@ if __name__ == "__main__":
         args.password = usr_cache['password']
 
     scraper = NateeScraper(args.uid, args.password)
-    scraper.path_validator(args.cpp_path, args.quiz_link)
-    print("Path Validated...")
-    print("Creating test case...")
-    scraper.create_testcase(args.cpp_path, args.quiz_link)
+    scraper.create_testcase(args.cpp_path, args.quiz_testcase_link)
