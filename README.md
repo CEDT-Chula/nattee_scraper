@@ -47,6 +47,12 @@ executable [path/to/file.cpp] [grader_submission_url] # no need to type uid and 
 - password and uid will be cached temporarily in your system cache(temp) folder so you don't have to retype it again
 - if you want to change your uid or password, just use the full command again with the new uid and password
 
+### Supported URLs
+|Type| Example |
+|--|--|
+|Submission Page| https://2110104.nattee.net/submissions/direct_edit_problem/[id] |  
+|Testcases Page|  https://2110104.nattee.net/testcases/show_problem/[id]|  
+
 ### Python installation Example
 ```bash
 # python installation
@@ -57,6 +63,12 @@ python ntscraper.py ./file.cpp https://2110104.nattee.net/submissions/direct_edi
 # binary installation
 ntscraper ./file.cpp https://2110104.nattee.net/submissions/direct_edit_problem/1307 --uid 66778899 --password 12345678
 ```
+<details>
+<summary>command not found: ntscraper ?</summary>
+
+    after the build move the ntscraper from 'nattee_scraper/dist' to the path that you want to execute the scraper from
+</details>
+<br>
 # Contribution Needed
 - Testing And Fix (if it broke) build.bat on windows (please also update the docs na bro)
 - Improvements On Codebase Algorithm & Maybe Some Refractor
