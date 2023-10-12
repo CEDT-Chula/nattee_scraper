@@ -8,7 +8,7 @@ import tempfile
 import re
 
 class NateeScraper():
-    def __init__(self, uid: str, password: str, root_url="https://2110104.nattee.net/") -> None:
+    def __init__(self, uid: str, password: str, root_url="https://cedt-grader.nattee.net/") -> None:
         self.root_url = root_url
         self.login_url = f"{root_url}/login/login"
         self.data = {
